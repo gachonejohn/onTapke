@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- start hero section -->
+ <div class="home-hero">
+<div class="container">
+    <div class="row custom-hero">
+        <div class="col-md-6">
+            <h1 class="display-5 fw-bold mb-4">Smart, Simple & <br>Seamless</h1>
+            <p class="lead mb-4">The Future of Networking is Here!<br> <span>Instantly share your professional details with a single tap or QR scan.</span></p>
+            <div><a href="#" class="btn btn-success">Book a Demo <i class="fa fa-arrow-right"></i></a></div>
+            <div class="customer-info mb-4">
+                <div class="customer-rating">
+                    <div class="user-images d-flex">
+                        <img src="{% static 'images/customer-1.png' %}" alt="User" class="rounded-circle border border-white" style="margin-right: -15px;">
+                        <img src="{% static 'images/customer-2.png' %}" alt="User" class="rounded-circle border border-white" style="margin-right: -15px;">
+                        <img src="{% static 'images/customer-3.png' %}" alt="User" class="rounded-circle border border-white">
+                    </div>
+                    <div>
+                        <span class="fw-bold">2,291</span><br>
+                        <span class="text-muted"> Happy Customers</span>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="rating-stars">
+                         <span class="text-dark ms-2 fw-bold">4.8/5</span><br>★★★★<span class="text-muted">★ rating</span>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <div class="col-md-6">
+            <div class="mockup-container">
+                <!-- <div class="circular-background"></div> -->
+                 <!-- <div class="background-shape"><img src="{% static 'images/bg-shape.png' %}" alt=""></div> -->
+                <!-- Phone Screen Image -->
+                <img src="{% static 'images/phone-mockup.png' %}" alt="Mobile Mockup" class="mockup-image">
+                
+                <!-- User Card 1 -->
+                <div class="overlay-card user-card-1">
+                    <img src="{% static 'images/customer-1.png' %}" alt="Ronald" class="user-card-profile">
+                    <div class="user-card-details">
+                        <h6>Jenny</h6>
+                        <p>onTap</p>
+                    </div>
+                </div>
+
+                <!-- User Card 2 -->
+                <div class="overlay-card user-card-2">
+                    <img src="{% static 'images/customer-2.png' %}" alt="Jenny" class="user-card-profile">
+                    <div class="user-card-details">
+                        <h6>Ronald</h6>
+                        <p>onTap</p>
+                    </div>
+                </div>
+
+                <!-- Digital Card -->
+                <img src="{% static 'images/ontap-hero-card.png' %}" alt="Digital Card" class="digital-card">
+            </div>
+        </div>
+    
+    </div>
+</div>
+</div>
+ <!-- end hero section -->
+
+
+ <!-- features section -->
+<div class="bg-section">
+ <div class="container py-5">
+    <h2 class="text-center mb-4 h-features-title">Features for a better experience</h2>
+    <div class="row g-4">
+        <!-- NFC Tap Feature -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-feature-card">
+                <img src="{% static 'images/feature-1.png' %}" alt="NFC Tap" class="card-img-top h-feature-icon" style="background-color: #FFF3D4;">
+                <div class="card-body">
+                    <h5 class="card-title h-feature-title">NFC Tap</h5>
+                    <p class="card-text h-feature-description">All of the On-Tap cards are equipped with an NFC tag, enabling seamless sharing or exchanging your contact details with just a tap.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code Feature -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-feature-card">
+                <img src="{% static 'images/feature-2.png' %}" alt="QR Code" class="card-img-top h-feature-icon" style="background-color: #E6F2F0;">
+                <div class="card-body">
+                    <h5 class="card-title h-feature-title">QR Code</h5>
+                    <p class="card-text h-feature-description">Perfect for video calls or easier contact sharing. On-Tap cards have a QR Code printed on the back. These QR Codes can be customized with colorful, glossy backgrounds.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget Feature -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-feature-card">
+                <img src="{% static 'images/feature-3.png' %}" alt="Widget" class="card-img-top h-feature-icon" style="background-color: #F0F0F0;">
+                <div class="card-body">
+                    <h5 class="card-title h-feature-title">Widget</h5>
+                    <p class="card-text h-feature-description">Use your Apple Watch or any other mobile device to show your contact details by installing the On-Tap Widget. The will make your contacts reachable whenever you need it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- USSD Feature -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-feature-card">
+                <img src="{% static 'images/feature-4.png' %}" alt="USSD" class="card-img-top h-feature-icon" style="background-color: #F0F0F0;">
+                <div class="card-body">
+                    <h5 class="card-title h-feature-title">USSD</h5>
+                    <p class="card-text h-feature-description">Fast, secure, and scalable hosting solutions for businesses.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+  <!-- end features section -->
+
+  <!-- start cta section -->
+   <div class="bg-section">
+  <section class="container">
+    <div class="row cta-section">
+        <div class="col-md-6">
+            <div class="video-container">
+                <!-- <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/Uu2hEFiZ_hM?autoplay=1&mute=1&loop=1&playlist=Uu2hEFiZ_hM" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe> -->
+            </div>
+        </div>
+        <div class="col-md-6 cta-text">
+            <h2 class="mb-3">The business card that exchanges contact information, sends text messages, does background research, scores your leads, prioritizes, and pushes all data straight to your CRM.</h2>
+            <div class="d-flex gap-3">
+                <a href="#" class="btn btn-success">Create a free card <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="#" class="btn btn-outline-success">For Teams <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+   <!-- end cta section -->
+
+    <!-- how it works section -->
+     <div class="how-it-works">
+    <section class="container py-5">
+        <h2 class="text-center mb-5">How it Works</h2>
+        <div class="row text-center how-works">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="step-icon">
+                    <i><img src="{% static 'images/step-1.png' %}" alt=""></i>
+                </div>
+                <p>Step 1: Create & Personalize Your Digital Card</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="step-icon">
+                    <i><img src="{% static 'images/step-2.png' %}" alt=""></i>
+                </div>
+                <p>Step 2: Share Instantly</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="step-icon">
+                    <i><img src="{% static 'images/step-3.png' %}" alt=""></i>
+                </div>
+                <p>Step 3: Drag, Drop & Update Anytime</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="step-icon">
+                    <i><img src="{% static 'images/step-4.png' %}" alt=""></i>
+                </div>
+                <p>Step 4: Track, Manage & Grow Your Network</p>
+            </div>
+        </div>
+        <!-- <div class="row text-center mt-5">
+            <div class="col-md-4 mb-3">
+                <h3 class="display-5 fw-bold">15+</h3>
+                <p class="text-muted">Years Experience</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h3 class="display-5 fw-bold">500+</h3>
+                <p class="text-muted">Corporate Clients</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h3 class="display-5 fw-bold">1500+</h3>
+                <p class="text-muted">Successful Placements</p>
+            </div>
+        </div> -->
+
+        <!-- start stats  -->
+        <div class="stats-container">
+            <div class="row">
+              <!-- Stat 1 -->
+              <div class="col-md-4 stat-item">
+                <div class="stat-number">15<span>+</span></div>
+                <div class="stat-label">Years Experience</div>
+              </div>
+              
+              <!-- Stat 2 -->
+              <div class="col-md-4 stat-item">
+                <div class="stat-number">500<span>+</span></div>
+                <div class="stat-label">Corporate Clients</div>
+              </div>
+              
+              <!-- Stat 3 -->
+              <div class="col-md-4 stat-item">
+                <div class="stat-number">1500<span>+</span></div>
+                <div class="stat-label">Successful Placements</div>
+              </div>
+            </div>
+         <!-- end stats -->
+        </section>
+    </div>
+
+     <!-- end how it works section -->
+
+   <!-- start testimonial section -->
+   <section class="container py-5">
+    <div id="testimonialCarousel" class="carousel slide testimonial-container" data-bs-ride="carousel">
+        <div class="testimonial-navigation">
+            <button class="nav-arrow" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-arrow" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="testimonial-card">
+                    <div class="testimonial-image-wrapper">
+                        <img src="{% static 'images/testimonial-1.png' %}" alt="Becky Nelson" class="testimonial-image">
+                    </div>
+                    <div class="testimonial-content">
+                        <h2 class="mb-3">Becky Nelson</h2>
+                        <p class="text-muted">Ask agreed answer rather joy nature admire wisdom. Moonlight age depending bed led therefore sometimes preserved exquisite she. An fall up so shot leaf level. Minuthe; highest his arrived for put and. Hopes lived by rooms oh in no death house.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="testimonial-card">
+                    <div class="testimonial-image-wrapper">
+                        <img src="{% static 'images/testimonial-1.png' %}" alt="John Doe" class="testimonial-image">
+                    </div>
+                    <div class="testimonial-content">
+                        <h2 class="mb-3">John Doe</h2>
+                        <p class="text-muted">Wisdom flows like a river, gentle yet powerful. Moments of insight illuminate the path of understanding. Each experience a testament to growth and reflection. The journey of life is marked by challenges overcome and lessons learned.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="testimonial-card">
+                    <div class="testimonial-image-wrapper">
+                        <img src="{% static 'images/testimonial-1.png' %}" alt="Jane Smith" class="testimonial-image">
+                    </div>
+                    <div class="testimonial-content">
+                        <h2 class="mb-3">Jane Smith</h2>
+                        <p class="text-muted">Life's journey is painted with brushstrokes of courage and compassion. Each challenge met with resilience, each triumph a celebration of human spirit. The path forward is illuminated by hope and determination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</section>
+    <!-- end testimonial section -->
+
+
+    <!-- start FAQ section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+          <h2 class="fw-bold text-center mb-5">Frequently Ask Questions</h2>
+          <div class="row g-4">
+            <!-- Left Expanded FAQ -->
+            <div class="col-md-6">
+              <div class="p-4 bg-light shadow rounded h-100">
+                <h6 class="fw-bold text-success">How do I create my digital business card?</h6>
+                <p class="mb-0 text-muted">Simply sign up, choose a template, enter your details (name, job title, contact info, social links), and customize the design. Once done, you can download, share via QR code, or order a customized version.</p>
+              </div>
+            </div>
+      
+            <!-- Right Collapsible FAQs -->
+            <div class="col-md-6">
+              <div class="accordion" id="faqAccordion">
+                <div class="accordion-item mb-3 shadow-sm">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">
+                      Do I need an app to share my digital business card?
+                    </button>
+                  </h2>
+                  <div id="faqOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                      No, your digital card can be shared via NFC tap or QR code with no app required.
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="accordion-item mb-3 shadow-sm">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">
+                      Can I update my digital business card after creating it?
+                    </button>
+                  </h2>
+                  <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                      Yes, you can edit and update your card anytime from your dashboard.
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="accordion-item shadow-sm">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">
+                      What's the difference between downloadable templates and paid customization?
+                    </button>
+                  </h2>
+                  <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                      Downloadable templates are self-editable, while paid versions come with professional design, printing, and enhanced features.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     <!-- end FAQ section -->
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OnTap - Reset Email Sent</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .reset-container {
+      min-height: 100vh;
+    }
+
+    .reset-card {
+      max-width: 450px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .btn-custom {
+      background-color: #00bfa6;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #009f8c;
+    }
+
+    .reset-logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container reset-container d-flex align-items-center justify-content-center">
+    <div class="reset-card shadow-sm bg-white rounded text-center">
+      <div class="mb-4 reset-logo">
+        <img src="{% static 'images/logo.png' %}" alt="onTap">
+      </div>
+      <div class="mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#00bfa6" class="bi bi-envelope-check" viewBox="0 0 16 16">
+          <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217L8 8.5z"/>
+          <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-1.5 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0m-2.5.938a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 1 0-1 0v1.5a.5.5 0 0 0 .5.5m.5-3.938a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+        </svg>
+      </div>
+      <h3 class="mb-3 fw-bold">Check Your Email</h3>
+      <p class="text-muted mb-4">We've sent you an email with instructions to reset your password. If you don't see it, please check your spam folder.</p>
+      <a href="{% url 'login' %}" class="btn btn-custom text-white">Back to Login</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

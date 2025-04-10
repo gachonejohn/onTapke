@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+        .contact-section {
+        background-color: #FFFFFF;
+        padding: 60px 20px;
+    }
+    .contact-wrapper {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+    .contact-title {
+        color: #2d3748;
+        font-weight: 600;
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+        display: block;
+        text-align: left;
+    }
+    .form-control {
+        width: 100%;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 10px 12px;
+        margin-bottom: 20px;
+    }
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+    .btn-submit {
+        background-color: #17AE9E;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+    .btn-submit:hover {
+        background-color: #1cbdad;
+    }
+    .contact-info {
+        padding-right: 30px;
+    }
+    .contact-info-item {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .contact-icon-wrapper {
+        width: 24px;
+        margin-right: 15px;
+        color: #000000;
+        font-size: 20px;
+    }
+    .contact-info-content h6 {
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 5px;
+    }
+    .contact-info-content p {
+        color: #4a5568;
+        margin: 0;
+    }
+    .form-check {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .form-check-input {
+        margin-right: 8px;
+    }
+    .form-check-label {
+        color: #4a5568;
+        font-size: 14px;
+    }
+    .errorlist {
+        color: #dc3545;
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 5px;
+        font-size: 0.875rem;
+    }
+    
+    @media (max-width: 768px) {
+        .contact-info {
+            padding-right: 0;
+            margin-bottom: 40px;
+        }
+    }
+
+
+
+    .contact-footer-section {
+      padding: 3rem 0;
+      background-color: #ffffff;
+    }
+
+    .desc{
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        letter-spacing: 0%;
+        color: #000000;
+    }
+   
+    .c-feature-box {
+      margin-top: 2rem;
+    }
+    .c-feature-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .c-feature-text {
+      color: #4b5563;
+    }
+</style>
+
+<!-- start hero section -->
+<div class="shop-hero">
+
+    <section class="container">
+        <div class="row custom-hero">
+            <div class="col-md-6">
+                <h5 class="display-5 fw-bold mb-4 shop-hero-head-text">Elevate Your Networking 
+                    Experience with OnTap</h5>
+                
+            </div>
+            
+            <div class="col-md-6">
+                <div class="mockup-container">
+                   
+                    <img src="{% static 'images/contact-hero.png' %}" alt="Support" class="mockup-image" style="width: 400px; margin-bottom: 0; padding-bottom: 0;">  
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    </div>
+ <!-- end hero section -->
+
+  <!-- contact form -->
+  <section class="contact-section">
+    <div class="contact-wrapper">
+        <!-- <h2 class="contact-title">Get in Touch</h2> -->
+        
+        <div class="row">
+         
+            <div class="col-md-5">
+                <h2 class="contact-info-item">Contact us</h2>
+                <p class="contact-info-item">We are here to help, reach out!</p>
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon-wrapper">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h6>Email</h6>
+                            <p>info@team</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon-wrapper">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h6>Phone</h6>
+                            <p>+254 123 456</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon-wrapper">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h6>Office</h6>
+                            <p>Location</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form now on the right -->
+            <div class="col-md-7">
+                <!-- Contact Form -->
+                <form method="post" action="{% url 'contact_us' %}">
+                    {% csrf_token %}
+                    
+                    <div>
+                        <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+                        <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control" required>
+                        {% if form.name.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.name.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="form-control" required>
+                        {% if form.email.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+                        <textarea name="{{ form.message.name }}" id="{{ form.message.id_for_label }}" class="form-control" placeholder="Type your message..."></textarea>
+                        {% if form.message.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.message.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="{{ form.terms.name }}" id="{{ form.terms.id_for_label }}" required>
+                        <label class="form-check-label" for="{{ form.terms.id_for_label }}" style="text-align: left;">
+                            I accept the terms
+                        </label>
+                        {% if form.terms.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.terms.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Submit Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--end contact form  -->
+
+<!-- start contact footer section -->
+<section class="contact-footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class=" CTA-title">Unlock the Power of Seamless Networking with Our Innovative Solutions</h1>
+          <p class="lead desc">Our services are designed to enhance your networking experience, making it easier to connect and share information. Choose from a variety of customizable options that fit your needs.</p>
+        </div>
+      </div>
+      
+      <div class="row c-feature-box">
+        <div class="col-md-6">
+          <h3 class="c-feature-title">Effortless Sharing</h3>
+          <p class="c-feature-text">Share your contact details with just a tap or scan.</p>
+        </div>
+        <div class="col-md-6">
+          <h3 class="c-feature-title">Custom Solutions</h3>
+          <p class="c-feature-text">Tailored options to meet the unique needs of your organization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ <!-- end contact footer section -->
+
+{% endblock content %}

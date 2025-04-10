@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .shop-hero{
+        min-height: 400px;
+    }
+    .ontap-section {
+      padding: 4rem 0;
+      background-color: #ffffff;
+      position: relative;
+    }
+    .main-heading {
+      color: #20b2aa;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .subtitle {
+      margin-bottom: 2rem;
+      color: #333;
+      line-height: 1.6;
+    }
+    .feature-point {
+      margin-bottom: 1rem;
+    }
+    .feature-title {
+      color: #ff8c00;
+      font-weight: 500;
+    }
+    .feature-description {
+      color: #333;
+      margin-left: 0.5rem;
+    }
+    .benefits-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .benefits-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .benefits-list li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #333;
+    }
+    .section-title {
+      color: #20b2aa;
+      font-weight: 600;
+      margin: 2rem 0 1.5rem;
+    }
+    .cards-image-container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .cards-image {
+      max-width: 100%;
+      height: auto;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @media (max-width: 991px) {
+      .cards-image {
+        position: static;
+        transform: none;
+        margin-top: 2rem;
+      }
+      .cards-image-container {
+        display: block;
+        text-align: center;
+      }
+    }
+</style>
+
+<!-- start hero section -->
+<section class="shop-hero">
+
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8 col-md-10 services-hero-content">
+                    <h2 class="animate-title">About us</h2>
+                    <p class="animate-subtitle">we specialize in delivering tailored solutions that drive results. Discover how our expertise can 
+                        elevate your business to new heights.</p>
+                </div>
+            </div>
+        </div>
+      
+    </section>
+
+ <!-- hero section -->
+
+
+ <!-- start about section -->
+ <section class="ontap-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h1 class="CTA-title">Smart. Seamless. Secure.</h1>
+          <p class="subtitle">OnTap digital business cards represent the evolution of professional networking in today's digital landscape. These innovative tools combine convenience with cutting-edge technology to transform how professionals connect and share information.</p>
+          
+          <div class="feature-point">
+            <span class="feature-title">Tap:</span>
+            <span class="feature-description">"Tap your smart business card on any smartphone—no apps needed."</span>
+          </div>
+          
+          <div class="feature-point">
+            <span class="feature-title">Share:</span>
+            <span class="feature-description">"Share just your contact info or your entire professional world."</span>
+          </div>
+          
+          <div class="feature-point">
+            <span class="feature-title">Save:</span>
+            <span class="feature-description">"Get their details back with one click—no more lost leads."</span>
+          </div>
+          
+          <h2 class="CTA-title">Seamless Experience</h2>
+          <p>The OnTap system eliminates friction from networking:</p>
+          <ul class="benefits-list">
+            <li>Instant sharing through a quick tap</li>
+            <li>No more fumbling for paper cards</li>
+            <li>Digital updates mean your information is always current</li>
+            <li>Integration with CRM systems and digital calendars</li>
+            <li>Customizable sharing profiles for different contexts and audiences</li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="cards-image-container">
+            <img src="{% static 'images/about-us.png' %}" alt="OnTap Digital Business Cards Stack" class="cards-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- end about section -->
+
+ <!-- about footer section -->
+ <section class="a-features-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="CTA-title">Security You Can Trust</h2>
+          <p class="a-feature-description">In an era of increasing privacy concerns, OnTap prioritizes data protection:</p>
+          <ul class="a-features-list">
+            <li>Control exactly what information you share with each contact</li>
+            <li>End-to-end encryption for all data transfers</li>
+            <li>Compliance with global data protection regulations</li>
+            <li>Ability to revoke access to your information</li>
+            <li>Authentication measures to prevent unauthorized access</li>
+          </ul>
+        </div>
+        
+        <div class="col-md-6 image-column">
+          <h2 class="CTA-title">Elevate Your Professional Image</h2>
+          <p class="a-feature-description">Beyond functionality, OnTap cards make a statement about your professional brand:</p>
+          <ul class="a-features-list">
+            <li>Showcase your forward-thinking approach</li>
+            <li>Demonstrate environmental consciousness by eliminating paper waste</li>
+            <li>Create memorable first impressions with customizable designs and interactive elements</li>
+            <li>Track engagement with your shared information</li>
+            <li>Analyze networking effectiveness through detailed analytics</li>
+          </ul>
+          <p class="a-closing-paragraph">OnTap digital business cards don't just replace traditional cards—they transform the entire networking experience, allowing you to build stronger connections while maintaining complete control over your professional identity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about footer -->
+  
+
+{% endblock content %}

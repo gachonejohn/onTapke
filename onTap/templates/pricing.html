@@ -1,0 +1,410 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+.pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .pricing-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      flex-wrap: wrap; 
+    }
+    
+    .pricing-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      min-width: 250px; 
+      margin-bottom: 15px; 
+      height: 650px; 
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1199px) {
+      .pricing-card {
+        max-width: 48%; 
+        margin: 0 1% 15px 1%;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .pricing-card {
+        max-width: 100%; 
+        margin: 0 0 15px 0;
+        height: auto; 
+        min-height: 500px; 
+      }
+      
+      .pricing-cards {
+        gap: 15px; 
+      }
+    }
+    
+    .pro-card {
+      border: 2px solid #16a085;
+    }
+    
+    .card-content {
+      flex-grow: 1;
+      overflow-y: auto; 
+    }
+    
+    .plan-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .plan-price {
+      font-size: 32px;
+      color: #16a085;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .price-detail {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    
+    .feature-list li {
+      margin-bottom: 8px;
+      font-size: 14px;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .feature-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #16a085;
+    }
+    
+    .card-footer {
+      padding-top: 20px;
+      margin-top: auto; /* Push to bottom */
+    }
+    
+    .btn-action {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .btn-create {
+      background-color: #16a085;
+    }
+    
+    .btn-get-started {
+      background-color: #1abc9c;
+    }
+    
+    .btn-start-trial-dark {
+      background-color: #0d253f;
+    }
+    
+    .btn-start-trial-light {
+      background-color: #16a085;
+    }
+</style>
+<!-- start pricing hero -->
+<div class="shop-hero">
+
+    <section class="container">
+        <div class="row custom-hero">
+            <div class="col-md-6">
+                <h5 class="display-5 fw-bold mb-4 shop-hero-head-text">Empower Your Networking with OnTap Solutions</h5>
+                <p class="lead mb-4">At OnTap, we revolutionize the way you connect by offering innovative NFC and QR code 
+                    solutions tailored for every enterprise need. Choose from our range of customizable digital 
+                    business cards to enhance your networking experience.</p>
+                
+            </div>
+            
+            <div class="col-md-6">
+                <div class="mockup-container">
+                    <!-- Phone Screen Image -->
+                    <img src="{% static 'images/pricing-hero.png' %}" alt="Digital cards" class="mockup-image">  
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    </div>
+<!-- end pricing hero -->
+
+ <!-- start pricing section -->
+ <div class="pricing-container">
+  <h2 class="pricing-title">Our Pricing Plans</h2>
+  <div class="pricing-cards">
+    {% for plan in plans %}
+      <div class="pricing-card {% if plan.is_popular %}pro-card{% endif %}">
+        <div class="card-content">
+          <div class="plan-title">{{ plan.name }}</div>
+          {% if plan.subtitle %}
+            <div class="price-detail">{{ plan.subtitle }}</div>
+          {% endif %}
+          <div class="plan-price">{{ plan.price }} {% if plan.billing_cycle %}
+            <span class="price-detail">{{ plan.billing_cycle }}</span>
+          {% endif %}</div>
+         
+          <ul class="feature-list">
+            {% for feature in plan.feature_list %}
+              <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-action {% if plan.is_popular %}btn-start-trial-dark{% else %}btn-get-started{% endif %}">{{ plan.cta_text }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+ <!-- end pricing section -->
+
+
+  <!-- start pricing table -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4 t-pricing-header">Compare Our Plans</h2>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="privilege-name plan-heading">Privileges</th>
+            <th class="plan-heading">Basic</th>
+            <th class="plan-heading">Pay-Per-Card</th>
+            <th class="plan-heading">Pro</th>
+            <th class="plan-heading">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="privilege-name">Personalize with Your Photo, Contact Info, Logo</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Custom Lead Capture Forms</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Unlimited card sharing<br>(QR code, Email, SMS, and social media)</td>
+            <td><span class="check-mark">✓</span></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Generate Email Signatures</td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Custom Virtual Backgrounds</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">50+ Different Live Types</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">AI-Powered Card Scanner</td>
+            <td>100 Scans</td>
+            <td>Pay per scan</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Artificial Proofreading</td>
+            <td></td>
+            <td>Pay per use</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Export to Excel/Vcf</td>
+            <td></td>
+            <td>Pay per export</td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Batch export to Contacts</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">High-Precision Calibration</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>20 sheets/person/month</td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Opportunity Information Management</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Tag Management</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Administration Management</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Business Card Information Sharing Alerts</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Security</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Marketing Email Delivery</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>5,000/company/month</td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Excel File Import</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+          <tr>
+            <td class="privilege-name">Integration via Web Service API</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="check-mark">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <!-- end pricing table -->
+
+
+ <!-- start features section -->
+ <div class="container py-5">
+    <h2 class="p-section-title CTA-title">Discover the Power of OnTap Cards</h2>
+    <p class="p-section-subtitle">OnTap cards offer innovative features designed to enhance your networking experience. With NFC Tap, QR Code capabilities, and seamless integration, sharing your contact information has never been easier.</p>
+
+    <div class="p-features-container">
+        <div class="row">
+            <!-- First row -->
+            <div class="col-md-6">
+                <div class="p-feature-card">
+                    <img src="{% static 'images/nfc-tap-icon.png' %}" alt="NFC Tap">
+                    <h3 class="p-feature-title">NFC Tap</h3>
+                    <p class="p-feature-text">Effortlessly share your contact details with just a tap using our NFC-enabled cards.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-feature-card">
+                    <img src="{% static 'images/widget-icon.png' %}" alt="Widget Integration">
+                    <h3 class="p-feature-title">Widget Integration</h3>
+                    <p class="p-feature-text">Easily share your details using the OnTap widget on your mobile device.</p>
+                </div>
+            </div>
+            
+            <!-- Second row -->
+            <div class="col-md-6">
+                <div class="p-feature-card">
+                    <img src="{% static 'images/qrcode-icon.png' %}" alt="QR Code">
+                    <h3 class="p-feature-title">QR Code</h3>
+                    <p class="p-feature-text">Customize your QR Code with your logo for a professional touch that stands out.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-feature-card">
+                    <img src="{% static 'images/ussd-icon.png' %}" alt="USSD Access">
+                    <h3 class="p-feature-title">USSD Access</h3>
+                    <p class="p-feature-text">Access your contact information quickly and efficiently through USSD for instant sharing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end features section -->
+
+<!-- start cta section -->
+<div class="container-fluid p-0 mb-5" >
+    <div class="p-cta-section">
+        <div class="container">
+            <h2 class="p-cta-title">Start Networking Smarter Today</h2>
+            <p class="p-cta-subtitle">Discover how OnTap cards can transform your networking experience and streamline your connections.</p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

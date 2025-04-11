@@ -126,7 +126,7 @@ def subscribe_view(request):
                     message,
                     settings.DEFAULT_FROM_EMAIL,
                     [admin_email],
-                    fail_silently=False,
+                    fail_silently=True,
                 )
                 messages.success(request, 'Thank you for Joining our waiting list!')
             except Exception as e:

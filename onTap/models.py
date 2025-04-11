@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class PricingPlan(models.Model):
@@ -16,3 +17,17 @@ class PricingPlan(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class WaitingSubscriber(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(default=timezone.now)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = "Waiting Subscriber"
+        verbose_name_plural = "Waiting Subscribers" 

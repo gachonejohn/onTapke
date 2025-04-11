@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <h1 class="display-5 fw-bold mb-4">Smart, Simple & <br>Seamless</h1>
             <p class="lead mb-4">The Future of Networking is Here!<br> <span>Instantly share your professional details with a single tap or QR scan.</span></p>
-            <div><a href="#" class="btn btn-success">Book a Demo <i class="fa fa-arrow-right"></i></a></div>
+            <div><a href="{% url 'login' %}" class="btn btn-success">Get started <i class="fa fa-arrow-right"></i></a></div>
             <div class="customer-info mb-4">
                 <div class="customer-rating">
                     <div class="user-images d-flex">
@@ -44,7 +44,7 @@
                     <img src="{% static 'images/customer-1.png' %}" alt="Ronald" class="user-card-profile">
                     <div class="user-card-details">
                         <h6>Jenny</h6>
-                        <p>onTap</p>
+                        <p style="line-height: 100%;">“This app has been a game-changer for organizing my contacts effortlessly and keeping everything synced across devices.”</p>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                     <img src="{% static 'images/customer-2.png' %}" alt="Jenny" class="user-card-profile">
                     <div class="user-card-details">
                         <h6>Ronald</h6>
-                        <p>onTap</p>
+                        <p style="line-height: 100%;">"OnTap helps me share the right card with the right people in seconds. No confusion anymore."</p>
                     </div>
                 </div>
 
@@ -141,8 +141,8 @@
         <div class="col-md-6 cta-text">
             <h2 class="mb-3">The business card that exchanges contact information, sends text messages, does background research, scores your leads, prioritizes, and pushes all data straight to your CRM.</h2>
             <div class="d-flex gap-3">
-                <a href="#" class="btn btn-success">Create a free card <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                <a href="#" class="btn btn-outline-success">For Teams <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="{% url 'login' %}" class="btn btn-success" style="padding: 15px 30px;">Create a free card <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="{% url 'login' %}" class="btn btn-outline-success" style="padding: 15px 30px;">For Teams <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -242,7 +242,7 @@
                     </div>
                     <div class="testimonial-content">
                         <h2 class="mb-3">Becky Nelson</h2>
-                        <p class="text-muted">Ask agreed answer rather joy nature admire wisdom. Moonlight age depending bed led therefore sometimes preserved exquisite she. An fall up so shot leaf level. Minuthe; highest his arrived for put and. Hopes lived by rooms oh in no death house.</p>
+                        <p class="text-muted">"This app has been a game-changer for organizing my contacts effortlessly and keeping everything synced across devices."</p>
                     </div>
                 </div>
             </div>
@@ -253,7 +253,7 @@
                     </div>
                     <div class="testimonial-content">
                         <h2 class="mb-3">John Doe</h2>
-                        <p class="text-muted">Wisdom flows like a river, gentle yet powerful. Moments of insight illuminate the path of understanding. Each experience a testament to growth and reflection. The journey of life is marked by challenges overcome and lessons learned.</p>
+                        <p class="text-muted">"Scanning business cards has never been easier, and I love how it integrates seamlessly with my email."</p>
                     </div>
                 </div>
             </div>
@@ -264,7 +264,7 @@
                     </div>
                     <div class="testimonial-content">
                         <h2 class="mb-3">Jane Smith</h2>
-                        <p class="text-muted">Life's journey is painted with brushstrokes of courage and compassion. Each challenge met with resilience, each triumph a celebration of human spirit. The path forward is illuminated by hope and determination.</p>
+                        <p class="text-muted">"OnTap helps me share the right card with the right people in seconds. No confusion anymore."</p>
                     </div>
                 </div>
             </div>

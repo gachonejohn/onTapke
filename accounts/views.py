@@ -66,7 +66,7 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
 
 
 
-# accounts/api_views.py
+# api_views
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -78,9 +78,10 @@ from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .serializers import (
-    UserSerializer, RegisterSerializer, PasswordResetSerializer,
+    UserSerializer, RegisterSerializer, LoginSerializer, PasswordResetSerializer,
     PasswordResetConfirmSerializer, ChangePasswordSerializer
 )
 
@@ -105,6 +106,11 @@ class RegisterAPIView(generics.CreateAPIView):
             'user': UserSerializer(user).data
         }, status=status.HTTP_201_CREATED)
 
+
+
+class LoginAPIView(TokenObtainPairView):
+    serializer_class = LoginSerializer
+    permission_classes = [permissions.AllowAny]
 
 class UserProfileAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
@@ -141,9 +147,9 @@ class PasswordResetAPIView(APIView):
                 token = default_token_generator.make_token(user)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
                 
-                # Build reset URL (this would be your Flutter app's deep link)
+                # reset URL (this would be your Flutter app's deep link)
                 current_site = get_current_site(request)
-                reset_url = f"yourapp://password-reset-confirm/{uid}/{token}/"
+                reset_url = f"accounts://password-reset-confirm/{uid}/{token}/"
                 
                 # Send email
                 mail_subject = 'Reset your password'

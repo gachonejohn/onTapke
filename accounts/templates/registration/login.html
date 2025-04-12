@@ -159,14 +159,14 @@
             {% csrf_token %}
             <div class="mb-3">
               <label for="id_username" class="form-label">Email address</label>
-              <input type="email" name="username" class="form-control" id="id_username" placeholder="john@example.com" required>
+              <input type="email" name="username" class="form-control" id="id_username" placeholder="email@example.com" required>
               {% if form.username.errors %}
               <div class="form-error">{{ form.username.errors }}</div>
               {% endif %}
             </div>
             <div class="mb-3">
               <label for="id_password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control" id="id_password" placeholder="●●●●●●●" required>
+              <input type="password" name="password" class="form-control" id="id_password" placeholder="" required>
               {% if form.password.errors %}
               <div class="form-error">{{ form.password.errors }}</div>
               {% endif %}

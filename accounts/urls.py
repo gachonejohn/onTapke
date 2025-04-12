@@ -6,7 +6,7 @@ from .views import CustomPasswordResetView, CustomPasswordResetDoneView, CustomP
 # Import API views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from .views import (
-    RegisterAPIView, UserProfileAPIView, LogoutAPIView,
+    RegisterAPIView, LoginAPIView, UserProfileAPIView, LogoutAPIView,
     PasswordResetAPIView, PasswordResetConfirmAPIView, ChangePasswordAPIView
 )
 
@@ -29,6 +29,7 @@ path('password-reset-complete/', CustomPasswordResetCompleteView.as_view(), name
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
     # User management endpoints
+    path('api/login/', LoginAPIView.as_view(), name='login'),
     path('api/register/', RegisterAPIView.as_view(), name='api_register'),
     path('api/profile/', UserProfileAPIView.as_view(), name='api_profile'),
     path('api/logout/', LogoutAPIView.as_view(), name='api_logout'),

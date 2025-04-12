@@ -40,10 +40,11 @@
                 
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'shop' %}">Shop cards</a>
+                      <a class="nav-link {% if request.resolver_match.url_name == 'shop' %}active{% endif %}" href="{% url 'shop' %}">Shop cards</a>
+                        <!-- <a class="nav-link" href="{% url 'shop' %}">Shop cards</a> -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'pricing' %}">Pricing</a>
@@ -55,6 +56,15 @@
                         <a class="nav-link" href="{% url 'contact_us' %}">Contact</a>
                     </li>
                 </ul>
+
+
+
+                <!-- active links -->
+                
+                 <!-- end active links -->
+                
+
+                
                 <!-- Keep buttons on the right -->
                 <div class="d-flex">
                   <a href="{% url 'login' %}" class="btn btn-outline-success me-2">Login</a>

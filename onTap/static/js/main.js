@@ -72,3 +72,41 @@ document.addEventListener('DOMContentLoaded', function() {
           header.setAttribute('aria-expanded', !isExpanded);
       });
   });
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = new bootstrap.Carousel(document.getElementById('heroCarousel'), {
+        interval: 5000,
+        ride: true,
+        wrap: true
+    });
+    
+    // Re-trigger animations when slide changes
+    document.getElementById('heroCarousel').addEventListener('slide.bs.carousel', function () {
+        const title = document.querySelector('.animate-title');
+        const subtitle = document.querySelector('.animate-subtitle');
+        const btn1 = document.querySelector('.animate-btn-1');
+        const btn2 = document.querySelector('.animate-btn-2');
+        
+        // Reset animations
+        title.style.animation = 'none';
+        subtitle.style.animation = 'none';
+        btn1.style.animation = 'none';
+        btn2.style.animation = 'none';
+        
+        // Trigger reflow to restart animations
+        void title.offsetWidth;
+        void subtitle.offsetWidth;
+        void btn1.offsetWidth;
+        void btn2.offsetWidth;
+        
+        // Restart animations
+        title.style.animation = 'fadeInUp 0.8s ease forwards';
+        subtitle.style.animation = 'fadeInUp 0.8s ease 0.3s forwards';
+        btn1.style.animation = 'fadeInUp 0.8s ease 0.6s forwards';
+        btn2.style.animation = 'fadeInUp 0.8s ease 0.8s forwards';
+    });
+});
+

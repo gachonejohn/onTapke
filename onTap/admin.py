@@ -2,10 +2,30 @@ from django.contrib import admin
 from .models import PricingPlan, WaitingSubscriber
 
 
+# @admin.register(PricingPlan)
+# class PricingPlanAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'price', 'billing_cycle', 'is_popular', 'order')
+#     ordering = ('order',)
+
+
 @admin.register(PricingPlan)
 class PricingPlanAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'billing_cycle', 'is_popular', 'order')
+    list_display = ('name', 'price', 'billing_cycle', 'yearly_price', 'yearly_billing_cycle', 'is_popular', 'order')
     ordering = ('order',)
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'subtitle', 'is_popular', 'order')
+        }),
+        ('Monthly Pricing', {
+            'fields': ('price', 'billing_cycle')
+        }),
+        ('Yearly Pricing', {
+            'fields': ('yearly_price', 'yearly_billing_cycle')
+        }),
+        ('Details', {
+            'fields': ('features', 'cta_text')
+        }),
+    )
 
 
 

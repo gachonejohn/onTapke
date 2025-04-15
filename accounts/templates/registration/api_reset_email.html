@@ -1,0 +1,17 @@
+{% autoescape off %}
+Hello,
+
+You're receiving this email because you requested a password reset for your OnTap account.
+
+Please tap the link below to reset your password:
+{% block reset_link %}
+{{ reset_url }}
+{% endblock %}
+
+Your email is: {{ user.email }}
+
+If you didn't request this, please ignore this email. Your password won't be changed until you access the link above and create a new one.
+
+Thanks,
+The OnTap Team
+{% endautoescape %}

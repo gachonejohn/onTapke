@@ -110,3 +110,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const monthlyBtn = document.getElementById('monthly-btn');
+    const yearlyBtn = document.getElementById('yearly-btn');
+    const monthlyPrices = document.querySelectorAll('.monthly-price');
+    const yearlyPrices = document.querySelectorAll('.yearly-price');
+    const monthlyCycles = document.querySelectorAll('.monthly-cycle');
+    const yearlyCycles = document.querySelectorAll('.yearly-cycle');
+
+    monthlyBtn.addEventListener('click', function() {
+      monthlyBtn.classList.add('active');
+      yearlyBtn.classList.remove('active');
+      
+      // Show monthly prices, hide yearly prices
+      monthlyPrices.forEach(price => price.style.display = 'inline');
+      yearlyPrices.forEach(price => price.style.display = 'none');
+      monthlyCycles.forEach(cycle => cycle.style.display = 'inline');
+      yearlyCycles.forEach(cycle => cycle.style.display = 'none');
+    });
+
+    yearlyBtn.addEventListener('click', function() {
+      yearlyBtn.classList.add('active');
+      monthlyBtn.classList.remove('active');
+      
+      // Show yearly prices, hide monthly prices
+      monthlyPrices.forEach(price => price.style.display = 'none');
+      yearlyPrices.forEach(price => price.style.display = 'inline');
+      monthlyCycles.forEach(cycle => cycle.style.display = 'none');
+      yearlyCycles.forEach(cycle => cycle.style.display = 'inline');
+    });
+  });
+
+
+
+
+
+
+
+
+

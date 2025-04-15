@@ -23,12 +23,17 @@ body {
 }
 
 .nav-link.active {
-    color: #0B1B35;
+    color: #FBA6426E;
     font-weight: 700;
 }
 
 /* Animation classes */
-/*  */
+.animate-title,
+.animate-subtitle,
+.animate-btn {
+    opacity: 0;
+    transform: translateY(30px);
+}
 
 .animate-title {
     animation: fadeInUp 0.8s ease forwards;
@@ -50,6 +55,166 @@ body {
 /* .navbar-light .navbar-toggler-icon {
     border: none;
 } */
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 107, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    border: none;
+    padding: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+
+.navbar-toggler.collapsed .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 107, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 107, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M6 24L24 6'/%3e%3c/svg%3e");
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+/* 1. Color Change Toggle */
+.navbar-toggler-color {
+    border-color: #ff6b6b;
+}
+
+.navbar-toggler-color .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 107, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    border: none;
+    padding: 0;
+
+}
+
+/* 2. Custom Hamburger with CSS */
+.custom-toggler {
+    border: none;
+    padding: 0;
+}
+
+.custom-toggler-icon {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    margin: 0;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+.custom-toggler-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #3498db;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.custom-toggler-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.custom-toggler-icon span:nth-child(2),
+.custom-toggler-icon span:nth-child(3) {
+    top: 10px;
+}
+
+.custom-toggler-icon span:nth-child(4) {
+    top: 20px;
+}
+
+.custom-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(1) {
+    top: 10px;
+    width: 0%;
+    left: 50%;
+}
+
+.custom-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.custom-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.custom-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(4) {
+    top: 10px;
+    width: 0%;
+    left: 50%;
+}
+
+/* 3. Rounded Toggle */
+.rounded-toggler {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9b59b6;
+    border: none;
+}
+
+.rounded-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    width: 24px;
+    height: 24px;
+}
+
+/* 4. Animated Toggle with "X" */
+.animated-toggler {
+    border: none;
+}
+
+.animated-toggler .bar1,
+.animated-toggler .bar2,
+.animated-toggler .bar3 {
+    width: 25px;
+    height: 3px;
+    background-color: #27ae60;
+    margin: 5px 0;
+    transition: 0.4s;
+    display: block;
+}
+
+.animated-toggler[aria-expanded="true"] .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.animated-toggler[aria-expanded="true"] .bar2 {
+    opacity: 0;
+}
+
+.animated-toggler[aria-expanded="true"] .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* 5. Icon Toggle */
+.icon-toggler {
+    border: none;
+    font-size: 1.5rem;
+    color: #e74c3c;
+}
 
 /* end navbar */
 
@@ -112,43 +277,7 @@ body {
     z-index: 1;
 }
 
-.circular-background {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: #FBA6426E;
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.5;
-}
 
-.background-shape {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* width: 500px; */
-    height: 200px;
-    z-index: -1;
-
-}
-
-/* .circular-background {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
-    background: #FBA6426E;
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.5;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-} */
 
 .customer-rating {
     display: flex;
@@ -179,14 +308,96 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 } */
 
-@media (max-width: 768px) {
+/* Mobile-only improvements for customer info section */
+
+.video-cta {
+    padding: 15px 30px;
+}
+
+@media (max-width: 767px) {
+
+    .mockup-container,
+    .mockup-image,
+    .overlay-card,
+    .digital-card {
+        display: none !important;
+    }
+
     .custom-hero {
-        flex-direction: column;
         text-align: center;
     }
 
+    .video-cta {
+        padding: 2px 5px;
+    }
+
+    .customer-info {
+        margin: 1.5rem auto;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     .customer-rating {
+        display: flex;
+        flex-direction: row;
         justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+        flex-wrap: nowrap;
+        font-size: 0.85rem;
+    }
+
+    .user-images img {
+        width: 30px;
+        height: 30px;
+        margin-right: -10px !important;
+    }
+
+    .customer-rating .fw-bold {
+        font-size: 0.9rem;
+    }
+
+    .customer-rating .text-muted {
+        font-size: 0.75rem;
+    }
+
+    .separator {
+        height: 25px;
+        width: 1px;
+    }
+
+    .rating-stars {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .customer-rating {
+        gap: 0.35rem;
+        font-size: 0.8rem;
+    }
+
+    .customer-rating .fw-bold {
+        font-size: 0.8rem;
+    }
+
+    .customer-rating .text-muted {
+        font-size: 0.7rem;
+    }
+
+    .user-images img {
+        width: 22px;
+        height: 22px;
+        margin-right: -8px !important;
+    }
+
+    .separator {
+        height: 20px;
+    }
+
+    .customer-info {
+        margin: 1rem auto;
     }
 }
 
@@ -579,9 +790,9 @@ body {
 @media (max-width: 768px) {
 
     .navbar {
-        /* border-radius: 30px; */
+        border-radius: 0px;
         margin: 0;
-        margin-top: 5px;
+        margin-top: 0px;
         /* background-color: #CFCFCF30; */
     }
 

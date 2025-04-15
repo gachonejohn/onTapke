@@ -6,138 +6,177 @@
 
 <style>
 .pricing-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    
-    .pricing-title {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: #333;
-    }
-    
-    .pricing-cards {
-      display: flex;
-      justify-content: center;
-      gap: 1px;
-      flex-wrap: wrap; 
-    }
-    
-    .pricing-card {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 20px;
-      min-width: 250px; 
-      margin-bottom: 15px; 
-      height: 650px; 
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 1199px) {
-      .pricing-card {
-        max-width: 48%; 
-        margin: 0 1% 15px 1%;
-      }
-    }
-    
-    @media (max-width: 767px) {
-      .pricing-card {
-        max-width: 100%; 
-        margin: 0 0 15px 0;
-        height: auto; 
-        min-height: 500px; 
-      }
-      
-      .pricing-cards {
-        gap: 15px; 
-      }
-    }
-    
-    .pro-card {
-      border: 2px solid #16a085;
-    }
-    
-    .card-content {
-      flex-grow: 1;
-      overflow-y: auto; 
-    }
-    
-    .plan-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    
-    .plan-price {
-      font-size: 32px;
-      color: #16a085;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    
-    .price-detail {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-    }
-    
-    .feature-list li {
-      margin-bottom: 8px;
-      font-size: 14px;
-      position: relative;
-      padding-left: 15px;
-    }
-    
-    .feature-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #16a085;
-    }
-    
-    .card-footer {
-      padding-top: 20px;
-      margin-top: auto; /* Push to bottom */
-    }
-    
-    .btn-action {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    
-    .btn-create {
-      background-color: #16a085;
-    }
-    
-    .btn-get-started {
-      background-color: #1abc9c;
-    }
-    
-    .btn-start-trial-dark {
-      background-color: #0d253f;
-    }
-    
-    .btn-start-trial-light {
-      background-color: #16a085;
-    }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.pricing-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+.pricing-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.toggle-btn {
+  padding: 12px 30px;
+  border: 1px solid #5E5E5EED;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.toggle-btn:first-child {
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.toggle-btn:last-child {
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+}
+
+.toggle-btn.active {
+  background-color: #5E5E5EED;
+  color: white;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  flex-wrap: wrap; 
+}
+
+.pricing-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  min-width: 250px; 
+  margin-bottom: 15px; 
+  height: auto;
+  min-height: 650px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+  .pricing-card {
+    max-width: 48%; 
+    margin: 0 1% 15px 1%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pricing-card {
+    max-width: 100%; 
+    margin: 0 0 15px 0;
+    height: auto;
+    min-height: auto; 
+  }
+  
+  .pricing-cards {
+    gap: 15px; 
+  }
+}
+
+.pro-card {
+  border: 2px solid #16a085;
+}
+
+.card-content {
+  flex-grow: 1;
+  overflow-y: visible;
+}
+
+.plan-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.plan-price {
+  font-size: 32px;
+  color: #16a085;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.price-detail {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  max-height: none;
+}
+
+.feature-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.feature-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #16a085;
+}
+
+.card-footer {
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.btn-action {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-create {
+  background-color: #16a085;
+}
+
+.btn-get-started {
+  background-color: #1abc9c;
+}
+
+.btn-start-trial-dark {
+  background-color: #0d253f;
+}
+
+.btn-start-trial-light {
+  background-color: #16a085;
+}
 </style>
 <!-- start pricing hero -->
 <div class="shop-hero">
@@ -165,8 +204,15 @@
 <!-- end pricing hero -->
 
  <!-- start pricing section -->
- <div class="pricing-container">
+<div class="pricing-container">
   <h2 class="pricing-title">Our Pricing Plans</h2>
+  
+  <!-- Pricing toggle buttons -->
+  <div class="pricing-toggle">
+    <button id="monthly-btn" class="toggle-btn active">Monthly</button>
+    <button id="yearly-btn" class="toggle-btn">Yearly</button>
+  </div>
+  
   <div class="pricing-cards">
     {% for plan in plans %}
       <div class="pricing-card {% if plan.is_popular %}pro-card{% endif %}">
@@ -175,9 +221,22 @@
           {% if plan.subtitle %}
             <div class="price-detail">{{ plan.subtitle }}</div>
           {% endif %}
-          <div class="plan-price">{{ plan.price }} {% if plan.billing_cycle %}
-            <span class="price-detail">{{ plan.billing_cycle }}</span>
-          {% endif %}</div>
+          
+          <!-- Pricing display with toggle support -->
+          {% if "/month" in plan.billing_cycle %}
+            <div class="plan-price">
+              <span class="monthly-price">{{ plan.price }}</span>
+              <span class="yearly-price" style="display: none;">{{ plan.yearly_price }}</span>
+              <span class="price-detail">
+                <span class="monthly-cycle">{{ plan.billing_cycle }}</span>
+                <span class="yearly-cycle" style="display: none;">{{ plan.yearly_billing_cycle }}</span>
+              </span>
+            </div>
+          {% else %}
+            <div class="plan-price">{{ plan.price }} {% if plan.billing_cycle %}
+              <span class="price-detail">{{ plan.billing_cycle }}</span>
+            {% endif %}</div>
+          {% endif %}
          
           <ul class="feature-list">
             {% for feature in plan.feature_list %}
@@ -192,8 +251,7 @@
     {% endfor %}
   </div>
 </div>
-
- <!-- end pricing section -->
+<!-- end pricing section -->
 
 
   <!-- start pricing table -->

@@ -1,14 +1,12 @@
-# accounts/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from .models import CustomUser, EncryptedEmailField
 
 User = get_user_model()
 
 class CustomUserCreationForm(UserCreationForm):
-    """Form for user registration."""
-    
     email = forms.EmailField(
         max_length=254,
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email address'})
@@ -33,15 +31,16 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ('email', 'first_name', 'last_name', 'password1', 'password2')
     
     def clean_email(self):
-        email = self.cleaned_data['email'].lower()
-        if User.objects.filter(email=email).exists():
-            raise ValidationError("Email already exists")
+        email = self.cleaned_data.get('email')
+        if email:
+            # Check if the email hash already exists
+            email_hash = EncryptedEmailField.hash_email(email)
+            if CustomUser.objects.filter(email_hash=email_hash).exists():
+                raise forms.ValidationError("This email address is already in use.")
         return email
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    """Form for user authentication."""
-    
     username = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'john@example.com'})
     )
@@ -49,3 +48,20 @@ class CustomAuthenticationForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '●●●●●●●'})
     )
     remember = forms.BooleanField(required=False)
+
+
+
+
+from django.contrib.auth.forms import PasswordResetForm
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def get_users(self, email):
+        email_hash = EncryptedEmailField.hash_email(email)
+        
+        
+        active_users = CustomUser.objects.filter(
+            email_hash=email_hash,
+            is_active=True
+        )
+        
+        return active_users    

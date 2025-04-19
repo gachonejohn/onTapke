@@ -172,3 +172,81 @@ class CustomUser(AbstractUser):
         if self.email:
             self.email_hash = EncryptedEmailField.hash_email(self.email)
         super().save(*args, **kwargs)
+
+
+
+
+
+
+
+from django.db import models
+from django.conf import settings
+import pyotp
+from datetime import datetime, timedelta
+from django.utils import timezone
+
+# class OTPDevice(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     key = models.CharField(max_length=40, blank=True)
+#     last_verified = models.DateTimeField(null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+    
+#     def __str__(self):
+#         return f"{self.user.email}'s OTP Device"
+    
+#     def generate_otp(self):
+#         """Generate a new OTP for this device"""
+#         if not self.key:
+#             self.key = pyotp.random_base32()
+#             self.save()
+        
+#         totp = pyotp.TOTP(self.key, interval=300)  # 5-minute interval
+#         return totp.now()
+    
+#     def verify_otp(self, otp):
+#         """Verify the provided OTP"""
+#         if not self.key:
+#             return False
+        
+#         totp = pyotp.TOTP(self.key, interval=300)  # 5-minute interval
+#         verified = totp.verify(otp)
+        
+#         if verified:
+#             self.last_verified = datetime.now()
+#             self.save()
+        
+#         return verified
+
+class OTPDevice(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    key = models.CharField(max_length=40, blank=True)
+    last_verified = models.DateTimeField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user.email}'s OTP Device"
+    
+    def generate_otp(self):
+        """Generate a new OTP for this device"""
+        if not self.key:
+            self.key = pyotp.random_base32()
+            self.save()
+        
+        totp = pyotp.TOTP(self.key, interval=300)  # 5-minute interval
+        return totp.now()
+    
+    def verify_otp(self, otp):
+        """Verify the provided OTP with a window to handle slight time differences"""
+        if not self.key:
+            return False
+        
+        totp = pyotp.TOTP(self.key, interval=300)  # 5-minute interval
+        
+        # Use a window parameter (±1 interval) to handle small time discrepancies
+        verified = totp.verify(otp, valid_window=1)
+        
+        if verified:
+            self.last_verified = timezone.now()
+            self.save()
+        
+        return verified

@@ -6,6 +6,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import EncryptedEmailField
 
+from .models import OTPDevice
+from .utils import send_otp_email
+
 
 User = get_user_model()
 
@@ -16,12 +19,69 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 
-
-class LoginSerializer(TokenObtainPairSerializer):
+class OTPVerificationSerializer(serializers.Serializer):
+    otp = serializers.CharField(max_length=6, min_length=6)
+    user_id = serializers.CharField()
+    
+    def validate_otp(self, value):
+        if not value.isdigit() or len(value) != 6:
+            raise serializers.ValidationError("OTP must be a 6-digit number")
+        return value
+        
     def validate(self, attrs):
-        data = super().validate(attrs)
-        data['user'] = UserSerializer(self.user).data
-        return data
+        otp = attrs.get('otp')
+        user_id = attrs.get('user_id')
+        
+        try:
+            user = User.objects.get(id=user_id)
+            device = OTPDevice.objects.get(user=user)
+            
+            if device.verify_otp(otp):
+                attrs['user'] = user
+                return attrs
+            else:
+                raise serializers.ValidationError({"otp": "Invalid or expired OTP"})
+                
+        except User.DoesNotExist:
+            raise serializers.ValidationError({"user_id": "User not found"})
+        except OTPDevice.DoesNotExist:
+            raise serializers.ValidationError({"user_id": "OTP device not configured for user"})
+
+
+# class LoginSerializer(TokenObtainPairSerializer):
+#     def validate(self, attrs):
+#         data = super().validate(attrs)
+#         data['user'] = UserSerializer(self.user).data
+#         return data
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
+    
+    def validate(self, attrs):
+        email = attrs.get('email')
+        password = attrs.get('password')
+        
+        try:
+            # First check if user exists with this email hash
+            email_hash = EncryptedEmailField.hash_email(email)
+            user = User.objects.get(email_hash=email_hash)
+            
+            # Then authenticate
+            if user.check_password(password):
+                # Send OTP
+                send_otp_email(user)
+                
+                return {
+                    'user_id': user.id,
+                    'message': 'OTP has been sent to your email'
+                }
+            else:
+                raise serializers.ValidationError({"non_field_errors": ["Invalid email or password"]})
+                
+        except User.DoesNotExist:
+            # Security best practice: don't reveal if email exists
+            raise serializers.ValidationError({"non_field_errors": ["Invalid email or password"]})
 
 
 

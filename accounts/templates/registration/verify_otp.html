@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OnTap OTP Verification</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-container {
+      min-height: 100vh;
+    }
+
+    .login-left {
+      padding: 3rem;
+    }
+
+    .login-card {
+      max-width: 450px;
+      margin: auto;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #00bfa6;
+    }
+
+    .btn-custom {
+      background-color: #00bfa6;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #009f8c;
+    }
+
+    .login-logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .login-logo span {
+      color: #00bfa6;
+    }
+
+    .form-check-input:checked {
+      background-color: #00bfa6;
+      border-color: #00bfa6;
+    }
+
+    .login-image {
+      background: linear-gradient(to bottom right, #e0f7fa, #ffe0f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
+    .login-image img {
+      width: 90%;
+      max-width: 400px;
+    }
+    
+    .form-error {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+    
+    .messages {
+      padding: 0;
+      margin-bottom: 1rem;
+      list-style: none;
+    }
+    
+    .messages .success {
+      color: #28a745;
+      padding: 0.5rem;
+      background-color: rgba(40, 167, 69, 0.1);
+      border-radius: 0.25rem;
+    }
+    
+    .messages .error {
+      color: #dc3545;
+      padding: 0.5rem;
+      background-color: rgba(220, 53, 69, 0.1);
+      border-radius: 0.25rem;
+    }
+
+    /* OTP specific styles */
+    .otp-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .otp-input {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 1.2rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+    }
+
+    .otp-input:focus {
+      border-color: #00bfa6;
+      box-shadow: 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
+    }
+
+    .timer {
+      color: #6c757d;
+      margin-bottom: 1rem;
+    }
+
+    .resend-link {
+      color: #00bfa6;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .resend-link:hover {
+      text-decoration: underline;
+    }
+
+    .resend-link.disabled {
+      color: #adb5bd;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid login-container d-flex">
+    <div class="row flex-grow-1 w-100">
+      <!-- Left Side -->
+      <div class="col-md-6 d-flex align-items-center login-left">
+        <div class="login-card w-100">
+          <div class="mb-4 login-logo">
+            <img src="{% static 'images/logo.png' %}" alt="onTap">
+          </div>
+          <h3 class="mb-3 fw-bold">Verify Your Identity</h3>
+          <p class="text-muted mb-4">Please enter the verification code sent to <strong>{{ email }}</strong></p>
+
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <form method="post" action="{% url 'verify_otp' %}">
+            {% csrf_token %}
+            <div class="mb-4 text-center">
+                <p>Enter 6-digit verification code</p>
+                <!-- Simplified to use a single input - more reliable -->
+                <input type="text" class="form-control" maxlength="6" id="otp" name="otp" 
+                       pattern="[0-9]{6}" placeholder="Enter 6-digit code" 
+                       required autofocus>
+                {% if form.otp.errors %}
+                <div class="form-error">{{ form.otp.errors }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="text-center mb-4">
+                <p class="timer">Code expires in <span id="countdown">05:00</span></p>
+                <p>Didn't receive code? <a href="{% url 'resend_otp' %}" id="resend-link" class="resend-link disabled">Resend Code</a></p>
+            </div>
+        
+            <button type="submit" class="btn btn-custom text-white w-100">Verify</button>
+        </form>
+          <div class="text-center mt-3">
+            <small><a href="{% url 'login' %}" class="text-decoration-none">Back to Login</a></small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="col-md-6 login-image d-none d-md-flex">
+        <img src="{% static 'images/login-img.png' %}" alt="Cards">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Automatically move to next input
+    const otpInputs = document.querySelectorAll('.otp-input');
+    const fullOtpInput = document.getElementById('full_otp');
+    
+    otpInputs.forEach((input, index) => {
+      input.addEventListener('input', function(e) {
+        // Allow only numbers
+        this.value = this.value.replace(/[^0-9]/g, '');
+        
+        // Move to next input if current one is filled
+        if (this.value && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+        
+        // Update the hidden full OTP field
+        updateFullOtp();
+      });
+      
+      // Handle backspace
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+    });
+    
+    function updateFullOtp() {
+      let otp = '';
+      otpInputs.forEach(input => {
+        otp += input.value;
+      });
+      fullOtpInput.value = otp;
+    }
+    
+    // Countdown timer
+    function startTimer(duration, display) {
+      let timer = duration;
+      let minutes, seconds;
+      const resendLink = document.getElementById('resend-link');
+      
+      let interval = setInterval(function() {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        
+        display.textContent = minutes + ":" + seconds;
+        
+        if (--timer < 0) {
+          clearInterval(interval);
+          display.textContent = "00:00";
+          resendLink.classList.remove('disabled');
+        }
+      }, 1000);
+    }
+    
+    // Start the timer when page loads
+    window.onload = function() {
+      const fiveMinutes = 60 * 5;
+      const display = document.querySelector('#countdown');
+      startTimer(fiveMinutes, display);
+      
+      // Handle resend link
+      document.getElementById('resend-link').addEventListener('click', function(e) {
+        if (!this.classList.contains('disabled')) {
+          e.preventDefault();
+          
+          // Send AJAX request to resend OTP
+          fetch('{% url "login" %}', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+              email: '{{ email }}'
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              // Reset timer and disable resend link
+              this.classList.add('disabled');
+              startTimer(fiveMinutes, display);
+              
+              // Show success message
+              const messagesContainer = document.querySelector('.messages');
+              if (messagesContainer) {
+                const successMessage = document.createElement('li');
+                successMessage.className = 'success';
+                successMessage.textContent = 'OTP has been resent to your email.';
+                messagesContainer.appendChild(successMessage);
+              }
+            } else {
+              // Show error message
+              const messagesContainer = document.querySelector('.messages');
+              if (messagesContainer) {
+                const errorMessage = document.createElement('li');
+                errorMessage.className = 'error';
+                errorMessage.textContent = data.error || 'Failed to resend OTP. Please try again.';
+                messagesContainer.appendChild(errorMessage);
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        }
+      });
+    };
+  </script>
+</body>
+</html>

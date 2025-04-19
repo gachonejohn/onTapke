@@ -4,12 +4,12 @@ from .forms import ContactForm, WaitingSubscriptionForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'home.html')
 
-
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')    
 

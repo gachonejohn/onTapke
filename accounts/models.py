@@ -227,7 +227,7 @@ class OTPDevice(models.Model):
         return f"{self.user.email}'s OTP Device"
     
     def generate_otp(self):
-        """Generate a new OTP for this device"""
+        
         if not self.key:
             self.key = pyotp.random_base32()
             self.save()
@@ -236,7 +236,7 @@ class OTPDevice(models.Model):
         return totp.now()
     
     def verify_otp(self, otp):
-        """Verify the provided OTP with a window to handle slight time differences"""
+      
         if not self.key:
             return False
         

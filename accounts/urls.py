@@ -6,9 +6,12 @@ from .views import CustomPasswordResetView, CustomPasswordResetDoneView, CustomP
 # Import API views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from .views import (
-    RegisterAPIView, UserProfileAPIView, LogoutAPIView, VerifyOTPView, ResendOTPView, LoginInitiateAPIView,VerifyOTPAPIView, ResendOTPAPIView,
+     VerifyOTPView, ResendOTPView, 
 )
 
+from .api_views import (
+    RegisterAPIView, UserProfileAPIView, LogoutAPIView, LoginInitiateAPIView,VerifyOTPAPIView, ResendOTPAPIView,
+)
 
 # from .views import (
 #     RequestOTPView, VerifyOTPView, 
